@@ -1,0 +1,108 @@
+create table CLIENTE 
+(
+   IDCLIENTE            INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   NOME                 VARCHAR(50),
+   MORADA               VARCHAR(50),
+   TELEFONE           VARCHAR(8),
+   NIF                  VARCHAR(8),
+   BI                   VARCHAR(8),
+   EMAIL                VARCHAR(50),
+   constraint PK_CLIENTE primary key (IDCLIENTE)
+);
+
+create table ATRIBUICAO_HORARIO 
+(
+   ID_ATRIBUICAO            INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   ID_HORARIO                 INTEGER,
+   ID_TECNICO                 INTEGER,
+   DATA_INICIO           VARCHAR(10),
+   DATA_FIM           VARCHAR(10),
+   constraint PK_ATRIBUICAO_HORARIO primary key (ID_ATRIBUICAO)
+);
+
+create table ESPECIALIDADE
+(
+   ID_ESPECIALIDADE           INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   NOME_ESPECIALIDADE    VARCHAR(20),
+   OBSERVACOES           VARCHAR(20),
+   constraint PK_ESPECIALIDADE primary key (ID_ESPECIALIDADE)
+);
+
+create table HORARIO_TURNO
+(
+   ID_HORARIO          INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   DESCRICAO    VARCHAR(20),
+   HORA_INICIO          VARCHAR(20),
+   HORA_FIM          VARCHAR(20),
+   PAUSA_INICIO          VARCHAR(20),
+   PAUSA_FIM         VARCHAR(20),
+   constraint PK_HORARIO primary key (ID_HORARIO)
+);
+
+create table PEDIDO
+(
+   ID_PEDIDO          INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   ID_CLIENTE    INTEGER,
+   ID_TECNICO    INTEGER,
+   ESTADO          VARCHAR(20),
+   DATA_ESTADO          VARCHAR(20),
+   DATA_HORA_EXECUTAR         VARCHAR(20),
+   DESCRICAO          VARCHAR(20),
+   ID_TIPO_SERVICOS    INTEGER, 
+   constraint PK_PEDIDO primary key (ID_PEDIDO)
+);
+
+create table PREFERENCIA
+(
+   ID_PREFERENCIA          INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   ID_PEDIDO    INTEGER, 
+   DATA_HORA_INICIO          VARCHAR(20),
+   DATA_HORA_FIM          VARCHAR(20),
+   constraint PK_PREFERENCIA primary key (ID_PREFERENCIA)
+);
+
+create table REGISTO_FOLHAS
+(
+   ID_REGISTO_FOLHAS          INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   ID_PEDIDO    INTEGER, 
+   ID_CLIENTE          INTEGER,
+   TEMPO_HORAS         VARCHAR(10),
+   constraint PK_REGISTO_FOLHAS primary key (ID_REGISTO_FOLHAS)
+);
+
+create table TECNICO
+(
+   ID_TECNICO          INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   NOME_TECNICO    VARCHAR(50), 
+   MORADA_TECNICO    VARCHAR(50),
+   TELEFONE_TECNICO    VARCHAR(10),
+   ID_ESPECIALIDADE    INTEGER,
+   constraint PK_TECNICO primary key (ID_TECNICO)
+);
+
+create table TIPO_SERVICOS
+(
+   ID_TIPO_SERVICOS          INTEGER              not null
+   GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+   DESCRICAO    VARCHAR(50), 
+   CUSTO_HORA    VARCHAR(50),
+   constraint PK_TIPO_SERVICOS primary key (ID_TIPO_SERVICOS)
+);
+

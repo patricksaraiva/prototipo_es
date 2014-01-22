@@ -72,8 +72,17 @@ public class es_protot extends javax.swing.JFrame {
         jTextHF = new javax.swing.JTextField();
         BTGuardar = new javax.swing.JButton();
         BTCancel = new javax.swing.JButton();
+        jDialogConsultarPedidos = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableConsPedidos = new javax.swing.JTable();
+        jbVoiltar = new javax.swing.JButton();
+        jbNovoCP = new javax.swing.JButton();
+        jbTerminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jbEntrar = new javax.swing.JButton();
+        jbConsultarPedidos = new javax.swing.JButton();
+
+        jDialogPedido.setMinimumSize(new java.awt.Dimension(400, 400));
 
         jLabel1.setText("Descrição");
 
@@ -140,9 +149,7 @@ public class es_protot extends javax.swing.JFrame {
                             .addGroup(jDialogPedidoLayout.createSequentialGroup()
                                 .addGroup(jDialogPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
-                                    .addGroup(jDialogPedidoLayout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(0, 0, 0))
+                                    .addComponent(jLabel1)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGroup(jDialogPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jDialogPedidoLayout.createSequentialGroup()
@@ -190,6 +197,8 @@ public class es_protot extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jDialogPreferencia.setMinimumSize(new java.awt.Dimension(300, 300));
+
         jDateChooserDI.setDateFormatString("yyyy-MM-dd");
 
         jDateChooserDF.setDateFormatString("yyyy-MM-dd");
@@ -203,6 +212,11 @@ public class es_protot extends javax.swing.JFrame {
         jLabel8.setText("Hora fim");
 
         BTGuardar.setText("Guardar");
+        BTGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTGuardarActionPerformed(evt);
+            }
+        });
 
         BTCancel.setText("Cancelar");
         BTCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -262,6 +276,78 @@ public class es_protot extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        jDialogConsultarPedidos.setMinimumSize(new java.awt.Dimension(600, 350));
+
+        jTableConsPedidos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Cliente", "Tecnico", "Estado", "Data Estado", "Data Execução ", "Serviço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTableConsPedidos);
+        jTableConsPedidos.getColumnModel().getColumn(0).setMinWidth(0);
+        jTableConsPedidos.getColumnModel().getColumn(0).setMaxWidth(0);
+
+        jbVoiltar.setText("Voltar");
+        jbVoiltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVoiltarActionPerformed(evt);
+            }
+        });
+
+        jbNovoCP.setText("Novo");
+        jbNovoCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNovoCPActionPerformed(evt);
+            }
+        });
+
+        jbTerminar.setText("Terminar");
+        jbTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbTerminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogConsultarPedidosLayout = new javax.swing.GroupLayout(jDialogConsultarPedidos.getContentPane());
+        jDialogConsultarPedidos.getContentPane().setLayout(jDialogConsultarPedidosLayout);
+        jDialogConsultarPedidosLayout.setHorizontalGroup(
+            jDialogConsultarPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogConsultarPedidosLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jbVoiltar)
+                .addGap(65, 65, 65)
+                .addComponent(jbNovoCP)
+                .addGap(48, 48, 48)
+                .addComponent(jbTerminar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogConsultarPedidosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE))
+        );
+        jDialogConsultarPedidosLayout.setVerticalGroup(
+            jDialogConsultarPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogConsultarPedidosLayout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jDialogConsultarPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbVoiltar)
+                    .addComponent(jbNovoCP)
+                    .addComponent(jbTerminar))
+                .addGap(24, 24, 24))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbEntrar.setText("Novo pedido");
@@ -271,21 +357,35 @@ public class es_protot extends javax.swing.JFrame {
             }
         });
 
+        jbConsultarPedidos.setText("Consultar Pedidos");
+        jbConsultarPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConsultarPedidosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jbEntrar)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(jbConsultarPedidos))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jbEntrar)))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addGap(115, 115, 115)
                 .addComponent(jbEntrar)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jbConsultarPedidos)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -328,14 +428,14 @@ public class es_protot extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione um Tipo de Serviço");
         }else{
             idCliente = selectId("CLIENTE", "NOME_CLIENTE", cliente, "ID_CLIENTE");
-            idServico = selectId("TIPO_SERVICOS", "DESCRICAO", url, url);
+            idServico = selectId("TIPO_SERVICOS", "DESCRICAO", servico, "ID_TIPO_SERVICOS");
             int linhas = jTablePreferencias.getRowCount();
             horarios = new String[2][linhas];
             for(int i=0;i<linhas;i++){
                 horarios[0][i] = jTablePreferencias.getValueAt(i, 0).toString();
                 horarios[1][i] = jTablePreferencias.getValueAt(i, 1).toString();
                 if(idTecnico==0){
-                    idTecnico = gerarTecnico(horarios[0][i]);
+                    idTecnico = gerarTecnico(horarios[0][i],servico);
                 }
             }
             
@@ -346,7 +446,7 @@ public class es_protot extends javax.swing.JFrame {
                 System.err.println(e.getMessage());
                 System.out.println("O driver expecificado nao foi encontrado.");
             }
-            //guardar tabela pedido
+            //guardar dados tabela pedido
             try {
                 Connection con = DriverManager.getConnection(url);
                 String sql = "insert into PEDIDO(ID_CLIENTE,ID_TECNICO,ESTADO,DATA_ESTADO,DATA_HORA_EXECUTAR,DESCRICAO,ID_TIPO_SERVICOS) values "
@@ -360,7 +460,7 @@ public class es_protot extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.err.println("SQLException: " + ex.getMessage());
             }
-            //guardar tabela preferencias
+            //guardar dados tabela preferencia
             int idPedido = ultimoId("PEDIDO", "ID_PEDIDO");
             for (int i = 0; i < linhas; i++) {
                 try {
@@ -376,6 +476,7 @@ public class es_protot extends javax.swing.JFrame {
                     System.err.println("SQLException: " + ex.getMessage());
                 }
             }
+            jDialogPedido.setVisible(false);
         }
     }//GEN-LAST:event_btguardarActionPerformed
 
@@ -398,6 +499,86 @@ public class es_protot extends javax.swing.JFrame {
         jDialogPedido.setVisible(true);
         jDialogPedido.setLocationRelativeTo(this);
     }//GEN-LAST:event_BTCancelActionPerformed
+
+    private void BTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTGuardarActionPerformed
+        String datai = (String) sdf.format(jDateChooserDI.getDate());
+        String dataF =(String) sdf.format(jDateChooserDF.getDate());
+        String horaI = jTexHIinicio.getText();
+        String horaF = jTextHF.getText();
+        String dataHoraI = datai + "-"+horaI;
+        String dataHoraF = dataF + "-"+horaF;
+        if(horaI.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduza a Hora de Inicio");
+        }else if(horaF.equals("")){
+            JOptionPane.showMessageDialog(null, "Introduza a Hora de Fim");
+        }else{
+            model = (DefaultTableModel) jTablePreferencias.getModel();
+            model.addRow(new Object[]{dataHoraI,dataHoraF});
+            jDialogPedido.setVisible(true);
+            jDialogPedido.setLocationRelativeTo(this);
+            jDialogPreferencia.setVisible(false);
+        }
+    }//GEN-LAST:event_BTGuardarActionPerformed
+
+    private void jbConsultarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarPedidosActionPerformed
+        jDialogConsultarPedidos.setVisible(true);
+        jDialogConsultarPedidos.setLocationRelativeTo(this);
+        limparTabelaConsPedidos();
+        tabelaConsPedidos();
+    }//GEN-LAST:event_jbConsultarPedidosActionPerformed
+
+    private void jbVoiltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoiltarActionPerformed
+        jDialogConsultarPedidos.setVisible(false);
+    }//GEN-LAST:event_jbVoiltarActionPerformed
+
+    private void jbNovoCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoCPActionPerformed
+        jDialogConsultarPedidos.setVisible(false);
+        jDialogPedido.setVisible(true);
+        jDialogPedido.setLocationRelativeTo(this);
+        ComboboxCliente();
+        ComboboxServicos();
+        jTextAreaDescricao.setText("");
+        limparTabelaPreferencias();
+    }//GEN-LAST:event_jbNovoCPActionPerformed
+
+    private void jbTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTerminarActionPerformed
+        int linha = jTableConsPedidos.getSelectedRow();
+        int idPedido = 0;
+        String estado = "EXECUTADO";
+        String data = "";
+        if(linha == -1){
+            JOptionPane.showMessageDialog(null, "Selecione um Pedido");
+        } else {
+            //perguntar se quer mesmo Terminar
+            Object[] option = {"Sim", "Não"};
+            int x = JOptionPane.showOptionDialog(null, "Tem a certeza que pretende Terminar?", "",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+            if (x == 0) {
+                idPedido = Integer.parseInt(jTableConsPedidos.getValueAt(linha, 0).toString());
+                data = sdf.format(new Date());
+                try {
+                    Class.forName("org.apache.derby.jdbc.ClientDriver");
+                } catch (ClassNotFoundException e) { //driver não encontrado
+                    System.err.print("ClassNotFoundException: ");
+                    System.err.println(e.getMessage());
+                    System.out.println("O driver expecificado nao foi encontrado.");
+                }
+                try {
+                    Connection con = DriverManager.getConnection(url);
+                    String sql = "update PEDIDO set ESTADO='" + estado + "',DATA_ESTADO='" + data + "', DATA_HORA_EXECUTAR='" + data + "' where ID_PEDIDO=" + idPedido;
+                    PreparedStatement st = (PreparedStatement) con.prepareStatement(sql);
+                    st.executeUpdate();
+
+                    st.close();
+                    con.close();
+                } catch (SQLException ex) {
+                    System.err.println("SQLException: " + ex.getMessage());
+                }
+                limparTabelaConsPedidos();
+                tabelaConsPedidos();
+            }
+        }
+    }//GEN-LAST:event_jbTerminarActionPerformed
 
     
     
@@ -540,13 +721,29 @@ public class es_protot extends javax.swing.JFrame {
         model = (DefaultTableModel) jTablePreferencias.getModel();
         int linhas = model.getRowCount();
         for (int i = 0;i<linhas;i++){
-            model.removeRow(i);
+            model.removeRow(0);
         }
     }
-    private int gerarTecnico(String d){
-        int id = 0;
+    public void limparTabelaConsPedidos(){
+        model = (DefaultTableModel) jTableConsPedidos.getModel();
+        int linhas = model.getRowCount();
+        for (int i = 0;i<linhas;i++){
+            model.removeRow(0);
+        }
+    }
+    public void tabelaConsPedidos(){
+        int idPedido = 0;
+        int idCliente = 0;
+        String cliente = "";
         int idTecnico = 0;
-        String[] data = d.split("-"); //yyyy-MM-dd-hh-mm
+        String tecnico = "";
+        String estado ="";
+        String dataEstado = "";
+        String dataExecucao = "";
+        int idServico = 0;
+        String servico = "";
+       //carregar novos dados
+        
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException e) { //driver não encontrado
@@ -556,25 +753,85 @@ public class es_protot extends javax.swing.JFrame {
         }
         try {
             con = DriverManager.getConnection(url);
-            sql = "select * from TECNICO";
+            sql = "select * from PEDIDO" ;
+            PreparedStatement st = (PreparedStatement) con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                idPedido = rs.getInt("ID_PEDIDO");
+                idCliente = rs.getInt("ID_CLIENTE");
+                cliente = selectString("CLIENTE", "ID_CLIENTE", idCliente, "NOME_CLIENTE");
+                idTecnico = rs.getInt("ID_TECNICO");
+                tecnico = selectString("TECNICO", "ID_TECNICO", idTecnico, "NOME_TECNICO");
+                estado = rs.getString("ESTADO");
+                dataEstado = rs.getString("DATA_ESTADO");
+                dataExecucao = rs.getString("DATA_HORA_EXECUTAR");
+                idServico = rs.getInt("ID_TIPO_SERVICOS");
+                servico = selectString("TIPO_SERVICOS", "ID_TIPO_SERVICOS", idServico, "DESCRICAO");
+                model.addRow(new Object[]{idPedido,cliente,tecnico,estado,dataEstado,dataExecucao,servico});
+            }
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+        
+        
+        
+    } 
+    private int gerarTecnico(String d, String serv){
+        int id = 0;
+        int idTecnico = 0;
+        int idEsp = 0;
+        String[] data = d.split("-"); //yyyy-MM-dd-hh-mm
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) { //driver não encontrado
+            System.err.print("ClassNotFoundException: ");
+            System.err.println(e.getMessage());
+            System.out.println("O driver expecificado nao foi encontrado.");
+        }
+        try {
+            Connection con = DriverManager.getConnection(url);
+            sql = "select * from ESPECIALIDADE where NOME_ESPECIALIDADE='"+serv+"'";
+
+            PreparedStatement st = (PreparedStatement) con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                idEsp = rs.getInt("ID_ESPECIALIDADE");
+            }
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+        System.out.println(""+idEsp);
+        try {
+            Connection con = DriverManager.getConnection(url);
+            sql = "select * from TECNICO where ID_ESPECIALIDADE="+idEsp;
 
             PreparedStatement st = (PreparedStatement) con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 idTecnico = rs.getInt("ID_TECNICO");
-                String[] dataInicio = selectString("ATRIBUICAO_HORARIO", "DATA_INICIO", idTecnico, "ID_TECNICO").split("-");
-                String[] dataFim = selectString("ATRIBUICAO_HORARIO", "DATA_FIM", idTecnico, "ID_TECNICO").split("-");
-                int dataAno = Integer.parseInt(data[0]);
-                int dataMes = Integer.parseInt(data[1]);
-                int dataDia = Integer.parseInt(data[2]);
-                int dataIAno = Integer.parseInt(dataInicio[0]);
-                int dataIMes = Integer.parseInt(dataInicio[1]);
-                int dataIDia = Integer.parseInt(dataInicio[2]);
-                int dataFAno = Integer.parseInt(dataFim[0]);
-                int dataFMes = Integer.parseInt(dataFim[1]);
-                int dataFDia = Integer.parseInt(dataFim[2]);
-                if ((dataAno >= dataIAno) && (dataAno <= dataFAno)) {
-                    id = idTecnico;
+                String a = selectString("ATRIBUICAO_HORARIO", "ID_TECNICO", idTecnico, "DATA_INICIO");
+                String b = selectString("ATRIBUICAO_HORARIO", "ID_TECNICO", idTecnico, "DATA_FIM");
+                String[] dataInicio = a.split("-");
+                String[] dataFim = b.split("-");
+                if (id == 0) {
+                    int dataAno = Integer.parseInt(data[0]);
+//                    int dataMes = Integer.parseInt(data[1]);
+//                    int dataDia = Integer.parseInt(data[2]);
+                    int dataIAno = Integer.parseInt(dataInicio[0]);
+//                    int dataIMes = Integer.parseInt(dataInicio[1]);
+//                    int dataIDia = Integer.parseInt(dataInicio[2]);
+                    int dataFAno = Integer.parseInt(dataFim[0]);
+//                    int dataFMes = Integer.parseInt(dataFim[1]);
+//                    int dataFDia = Integer.parseInt(dataFim[2]);
+                    if ((dataAno >= dataIAno) && (dataAno <= dataFAno)) {
+                        
+                        id = idTecnico;
+                    }
                 }
             }
             st.close();
@@ -655,6 +912,7 @@ public class es_protot extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboTipoServico;
     private com.toedter.calendar.JDateChooser jDateChooserDF;
     private com.toedter.calendar.JDateChooser jDateChooserDI;
+    private javax.swing.JDialog jDialogConsultarPedidos;
     private javax.swing.JDialog jDialogPedido;
     private javax.swing.JDialog jDialogPreferencia;
     private javax.swing.JLabel jLabel1;
@@ -668,10 +926,16 @@ public class es_protot extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTableConsPedidos;
     private javax.swing.JTable jTablePreferencias;
     private javax.swing.JTextField jTexHIinicio;
     private javax.swing.JTextArea jTextAreaDescricao;
     private javax.swing.JTextField jTextHF;
+    private javax.swing.JButton jbConsultarPedidos;
     private javax.swing.JButton jbEntrar;
+    private javax.swing.JButton jbNovoCP;
+    private javax.swing.JButton jbTerminar;
+    private javax.swing.JButton jbVoiltar;
     // End of variables declaration//GEN-END:variables
 }
